@@ -14,4 +14,3 @@ export const message = async (req: Request, res: Response): Promise<void> => {
     }
 
 }
-
