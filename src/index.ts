@@ -146,13 +146,18 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration as any);
 
-app.use(bodyParser.json());
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:3000',  // 특정 origin을 허용
+  methods: ['GET', 'POST', 'OPTIONS'],  // OPTIONS 메서드 추가
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.use(bodyParser.json());
+
 let latestMessage = '';
 
 app.post('/message', async (req, res, next) => {
+  console.log('POST /message endpoint hit'); // 로그 추가
   try {
     latestMessage = req.body.message;
     res.status(200).send('Message received');
@@ -167,14 +172,19 @@ const headers = {
   "Cache-Control": "no-cache",
 };
 
-app.get('/getchat', async (req, res, next) => {
-  try {
-    res.writeHead(200, headers);
 
-    if (!latestMessage) {
-      res.write('data: No message available\n\n');
-      return res.end();
-    }
+
+app.get('/getchat', async (req, res, next) => {
+  console.log('GET /getchat endpoint hit'); // 로그 추가
+    try {
+      res.setHeader('Content-Type', 'text/event-stream');  // 강제로 헤더 설정
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+  
+      if (!latestMessage) {
+        res.write('data: No message available\n\n');
+        return res.end();
+      }
 
     const stream = await openai.chat.completions.create({
       model: 'gpt-4',
@@ -190,15 +200,27 @@ app.get('/getchat', async (req, res, next) => {
     res.write('data: [DONE]\n\n');
     res.end();
   } catch (err) {
+    console.error('Error in /getchat:', err); // 에러 로그 추가
     next(err);
   }
 });
 
+
 // Error handling middleware
-app.use((err:any, req:any, res:any, next:any) => {
+// Error handling middleware
+app.use((err: any, req: any, res: any, next: any) => {
   console.error(err.stack);
+
+  // Check if the request is an SSE request
+  if (req.headers.accept === 'text/event-stream') {
+    res.writeHead(500, headers); // Use the SSE headers
+    res.write('data: An error occurred on the server.\n\n');
+    return res.end();
+  }
+
   res.status(500).send('Something broke!');
 });
+
 
 app.listen(process.env.PORT, () => {
   console.log('server running..')
