@@ -15,16 +15,16 @@
 // async function getChatCompletion(message: string) {
 //   // Streaming:
 //   try {
-  //   const stream = await openai.chat.completions.create({
-  //     model: 'gpt-4',
-  //     messages: [{ role: 'user', content: message }],
-  //     stream: true,
-  //   });
-  //   for await (const part of stream) {
-  //     return process.stdout.write(part.choices[0]?.delta?.content || '');
-  //   }
-  //   process.stdout.write('\n');
-  // }
+//     const stream = await openai.chat.completions.create({
+//       model: 'gpt-4',
+//       messages: [{ role: 'user', content: message }],
+//       stream: true,
+//     });
+//     for await (const part of stream) {
+//       return process.stdout.write(part.choices[0]?.delta?.content || '');
+//     }
+//     process.stdout.write('\n');
+//   }
 //   catch (err) {
 //     if (err instanceof APIError) {
 //       console.log(err.status); // e.g. 400
