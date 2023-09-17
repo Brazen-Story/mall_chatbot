@@ -6,13 +6,6 @@
 // //   allowedHeaders: ['Content-Type', 'Authorization']
 // // }));
 
-
-// // const chat = 'SELECT * FROM chat';
-
-// // connection.query(chat, function (error: Error, userResults: string) {
-// //   if (error) throw error;
-// // });
-
 // app.use((err: any, req: any, res: any, next: any) => {
 //   console.error('Error occurred:', err);
 //   res.setHeader('Content-Type', 'text/event-stream');
@@ -20,12 +13,16 @@
 //   res.end();
 // });
 
+
 import Configuration from 'openai';
 import OpenAIApi from 'openai';
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { createDataSet } from './config/db';
+
+import data from './dataSet.json';
 
 dotenv.config();
 
@@ -44,6 +41,10 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json());
+
+createDataSet().catch(error => {
+  console.error('Error creating dataset:', error);
+});
 
 let latestMessage = '';
 
@@ -84,9 +85,12 @@ app.get('/getchat', async (req, res) => {
         return res.end();
       }
 
+      const dataString = JSON.stringify(data, null, 2);
+      const prompt = `${dataString}\n\n${latestMessage}`;
+
       const stream = await openai.chat.completions.create({
         model: 'gpt-4',
-        messages: [{ role: 'user', content: latestMessage }],
+        messages: [{ role: 'user', content: prompt }],
         stream: true,
       });
 

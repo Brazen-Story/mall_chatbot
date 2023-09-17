@@ -1,0 +1,420 @@
+{
+  "address": [],
+  "cart": [
+    {
+      "cart_id": 8,
+      "user_id": "1",
+      "item_id": 2,
+      "quantity": 5
+    }
+  ],
+  "category": [
+    {
+      "category_id": 0,
+      "parent_category_id": null,
+      "name": "ROOT",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 100000,
+      "parent_category_id": 0,
+      "name": "패션의류/잡화",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 100001,
+      "parent_category_id": 0,
+      "name": "뷰티",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 100002,
+      "parent_category_id": 0,
+      "name": "출산/유아동",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 200001,
+      "parent_category_id": 100000,
+      "name": "여성패션",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 200002,
+      "parent_category_id": 100000,
+      "name": "남성패션",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 200003,
+      "parent_category_id": 100000,
+      "name": "남녀 공용 의류",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 200004,
+      "parent_category_id": 100000,
+      "name": "유아동패션",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300001,
+      "parent_category_id": 200001,
+      "name": "의류",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300002,
+      "parent_category_id": 200001,
+      "name": "속옷/잠옷",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300003,
+      "parent_category_id": 200001,
+      "name": "신발",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300004,
+      "parent_category_id": 200001,
+      "name": "가방/잡화",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300005,
+      "parent_category_id": 200002,
+      "name": "의류",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300006,
+      "parent_category_id": 200002,
+      "name": "속옷/잠옷",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300007,
+      "parent_category_id": 200002,
+      "name": "신발",
+      "status": "ACTIVE"
+    },
+    {
+      "category_id": 300008,
+      "parent_category_id": 200002,
+      "name": "가방/잡화",
+      "status": "ACTIVE"
+    }
+  ],
+  "chat": [],
+  "item": [
+    {
+      "item_id": 2,
+      "seller_id": "1",
+      "category_id": 300001,
+      "name": "이쁜 옷",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "내용내용",
+      "price": 10000,
+      "stock": 100,
+      "created_at": "2023-09-11T10:31:36.000Z",
+      "updated_at": "2023-09-11T10:31:36.000Z"
+    },
+    {
+      "item_id": 3,
+      "seller_id": "1",
+      "category_id": 300001,
+      "name": "귀여운 옷",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "내용내용",
+      "price": 10000,
+      "stock": 100,
+      "created_at": "2023-09-11T10:45:08.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 5,
+      "seller_id": "1",
+      "category_id": 300001,
+      "name": "멋진 옷",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트1 상품입니다.",
+      "price": 3000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:42:08.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 6,
+      "seller_id": "1",
+      "category_id": 300008,
+      "name": "백팩",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트2 상품입니다.",
+      "price": 7000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:44:11.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 7,
+      "seller_id": "1",
+      "category_id": 300006,
+      "name": "동건이팬티",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트3 상품입니다.",
+      "price": 4000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:45:23.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 8,
+      "seller_id": "1",
+      "category_id": 300007,
+      "name": "운동화",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트4 상품입니다.",
+      "price": 2000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:47:16.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 9,
+      "seller_id": "1",
+      "category_id": 200003,
+      "name": "공바지",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트5 상품입니다.",
+      "price": 9000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:48:17.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 10,
+      "seller_id": "1",
+      "category_id": 300006,
+      "name": "동건이 빤스",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "테스트6 상품입니다.",
+      "price": 5000,
+      "stock": 99,
+      "created_at": "2023-09-11T11:56:16.000Z",
+      "updated_at": "2023-09-11T12:03:34.000Z"
+    },
+    {
+      "item_id": 11,
+      "seller_id": "1",
+      "category_id": 300003,
+      "name": "이쁜 신발",
+      "image_1": "이미지1",
+      "image_2": "이미지2",
+      "image_3": "이미지3",
+      "content": "이쁜 신발 팔아요",
+      "price": 30000,
+      "stock": 99,
+      "created_at": "2023-09-12T05:15:30.000Z",
+      "updated_at": "2023-09-12T05:15:30.000Z"
+    }
+  ],
+  "itemKeyword": [
+    {
+      "item_id": 2,
+      "keyword_id": 4
+    },
+    {
+      "item_id": 2,
+      "keyword_id": 5
+    },
+    {
+      "item_id": 2,
+      "keyword_id": 6
+    },
+    {
+      "item_id": 3,
+      "keyword_id": 4
+    },
+    {
+      "item_id": 3,
+      "keyword_id": 5
+    },
+    {
+      "item_id": 3,
+      "keyword_id": 6
+    },
+    {
+      "item_id": 5,
+      "keyword_id": 7
+    },
+    {
+      "item_id": 5,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 6,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 6,
+      "keyword_id": 9
+    },
+    {
+      "item_id": 7,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 8,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 8,
+      "keyword_id": 10
+    },
+    {
+      "item_id": 9,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 9,
+      "keyword_id": 11
+    },
+    {
+      "item_id": 10,
+      "keyword_id": 8
+    },
+    {
+      "item_id": 10,
+      "keyword_id": 12
+    },
+    {
+      "item_id": 11,
+      "keyword_id": 13
+    },
+    {
+      "item_id": 11,
+      "keyword_id": 14
+    }
+  ],
+  "keyword": [
+    {
+      "keyword_id": 4,
+      "keyword": "블라우스"
+    },
+    {
+      "keyword_id": 8,
+      "keyword": "상품"
+    },
+    {
+      "keyword_id": 14,
+      "keyword": "신발"
+    },
+    {
+      "keyword_id": 5,
+      "keyword": "여름"
+    },
+    {
+      "keyword_id": 13,
+      "keyword": "여성"
+    },
+    {
+      "keyword_id": 6,
+      "keyword": "여자 옷"
+    },
+    {
+      "keyword_id": 7,
+      "keyword": "테스트1"
+    },
+    {
+      "keyword_id": 9,
+      "keyword": "테스트2"
+    },
+    {
+      "keyword_id": 10,
+      "keyword": "테스트4"
+    },
+    {
+      "keyword_id": 11,
+      "keyword": "테스트5"
+    },
+    {
+      "keyword_id": 12,
+      "keyword": "테스트6"
+    }
+  ],
+  "order": [],
+  "orderDetail": [],
+  "review": [
+    {
+      "review_id": 1,
+      "user_id": "1",
+      "item_id": 2,
+      "content": "수정된 리뷰 내용",
+      "image": "imageUrl",
+      "created_at": "2023-09-12T05:37:31.000Z",
+      "updated_at": "2023-09-12T05:42:26.000Z",
+      "rate": 4
+    },
+    {
+      "review_id": 2,
+      "user_id": "1",
+      "item_id": 2,
+      "content": "리뷰내용",
+      "image": "imageUrl",
+      "created_at": "2023-09-12T05:38:15.000Z",
+      "updated_at": "2023-09-12T05:38:15.000Z",
+      "rate": 5
+    }
+  ],
+  "token": [
+    {
+      "token_id": 7,
+      "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2T3VFV25WcEJNT1RHR1VIY1pabGIiLCJyb2xlcyI6IlVTRVIiLCJpYXQiOjE2OTQ2ODQ3ODcsImV4cCI6MTY5NDc3MTE4N30.JOWIX7iyGJ60MOxSnMxZdAMZGcwUlq0Zveo8KPY3iC0",
+      "user_id": "6OuEWnVpBMOTGGUHcZZlb"
+    },
+    {
+      "token_id": 8,
+      "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSaDdUN202QkNOeDg4YWMwbXN3TnYiLCJyb2xlcyI6IlJPTEVfQURNSU4iLCJpYXQiOjE2OTQ2ODUxNTMsImV4cCI6MTY5NDc3MTU1M30.imNcRIm8ELE82DvosbseBCP681hqSw2rqnIuX6ehiTw",
+      "user_id": "Rh7T7m6BCNx88ac0mswNv"
+    }
+  ],
+  "user": [
+    {
+      "user_id": "1",
+      "meta_id": "1",
+      "role": "ROLE_SELLER"
+    },
+    {
+      "user_id": "6OuEWnVpBMOTGGUHcZZlb",
+      "meta_id": "hello",
+      "role": "ROLE_ADMIN"
+    },
+    {
+      "user_id": "Aqu9po2OIfgyeDuE4SJAc",
+      "meta_id": "1234",
+      "role": "ROLE_USER"
+    },
+    {
+      "user_id": "Rh7T7m6BCNx88ac0mswNv",
+      "meta_id": "0x2c879C9Fc9399024E3FD17e5cF6ccd02Bb6f0dD0",
+      "role": "ROLE_ADMIN"
+    }
+  ]
+}
