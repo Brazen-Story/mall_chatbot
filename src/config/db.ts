@@ -1,7 +1,5 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-import fs from 'fs';
-import path from 'path';
 
 dotenv.config();
 
@@ -42,23 +40,23 @@ function fetchDataFromTable(table: string): Promise<any[]> {
     });
 }
 
-function saveToJSON(data: any, filename: string) {
-    const outputPath = path.join(__dirname, filename);
-    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
-}
-
 export async function createDataSet() {
-    const tables = await fetchAllTables();
-    const dataset: any = {};
+    try {
+        const tables = await fetchAllTables();
+        const dataset: any = {};
 
-    for (const table of tables) {
-        dataset[table] = await fetchDataFromTable(table);
+        for (const table of tables) {
+            dataset[table] = await fetchDataFromTable(table);
+        }
+        console.log('hi')
+        console.log('Dataset created.');
+        return dataset;
+    } catch (error) {
+        console.error('Error creating dataset:', error);
+        throw error;
+    } finally {
+        connection.end();
     }
-
-    saveToJSON(dataset, 'dataSet.json');
-    console.log('Data saved to dataSet.json');
-
-    connection.end();
 }
 
 export { connection };
