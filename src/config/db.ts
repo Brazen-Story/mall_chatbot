@@ -48,14 +48,11 @@ export async function createDataSet() {
         for (const table of tables) {
             dataset[table] = await fetchDataFromTable(table);
         }
-        console.log('hi')
         console.log('Dataset created.');
         return dataset;
     } catch (error) {
         console.error('Error creating dataset:', error);
         throw error;
-    } finally {
-        connection.end();
     }
 }
 
