@@ -3,9 +3,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import './config/redis';  // redis.ts 파일을 import
-import { chatRoutes } from './routes/chatRoutes';
 import { connection } from './config/db';
+import { faqRoutes } from './routes/FAQ_Routes';
+import { chatRoutes } from './routes/chatRoutes';
 
 dotenv.config();
 
@@ -19,16 +19,17 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-const chat = 'SELECT * FROM chatFaq;';
+const faq = 'SELECT * FROM chatFaq;';
 
-connection.query(chat, function (error: Error, userResults: string) {
+connection.query(faq, function (error: Error, userResults: string) {
   if (error) throw error;
   console.log('good User');
 });
 
-app.use('/chat', chatRoutes)
+app.use('/faq', faqRoutes);
+app.use('/chat', chatRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
