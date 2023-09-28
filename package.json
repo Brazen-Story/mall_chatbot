@@ -2,6 +2,7 @@
   "name": "chatbot",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "license": "MIT",
   "devDependencies": {
     "@types/cookie-parser": "^1.4.4",
@@ -32,6 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "langchain": "^0.0.153",
     "mysql": "^2.18.1",
+    "mysql2": "^3.6.1",
     "node-fetch": "^3.3.2",
     "openai": "^4.6.0",
     "openai-streams": "^6.2.0",

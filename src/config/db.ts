@@ -1,6 +1,5 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-import { DataSource } from "typeorm";
 
 dotenv.config();
 
@@ -21,18 +20,4 @@ connection.connect(err => {
     console.log('Connected to the database.');
 });
 
-const createDbConnection = () => {
-  return new DataSource({
-    type: "mysql",
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : undefined,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    multipleStatements: true,
-    synchronize: true,
-  });
-};
-
-
-export { connection, createDbConnection };
+export { connection };
