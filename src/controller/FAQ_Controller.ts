@@ -16,17 +16,16 @@ export const FaqQuestion = async (req: Request, res: Response): Promise<void> =>
     });
 };
 
-export const FaqAnswer = async (req: Request, res: Response): Promise<void> => {
-
-    const question = req.body.message;
-
+export const getFaqAnswer = async (question: string, socket: any): Promise<void> => {
     const query = `SELECT answer FROM chatFaq WHERE question = ?;`;
 
     connection.query(query, [question], (err: MysqlError | null, result: any) => {
         if (result.length > 0) {
-            res.status(200).json({ answer: result[0].answer });
+            console.log('완료')
+            socket.emit('faq-answer', { answer: result[0].answer });
         } else {
-            res.status(404).send('No answer found for the given question.');
+            console.log('어?')
+            socket.emit('error', { error: 'No answer found for the given question.' });
         }
     });
 };
