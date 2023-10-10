@@ -25,6 +25,7 @@ const io = new Server(httpServer, {
 });
 
 const faq = 'SELECT * FROM chatFaq;';
+
 connection.query(faq, function (error: Error, userResults: string) {
   if (error) throw error;
   console.log('good User');
