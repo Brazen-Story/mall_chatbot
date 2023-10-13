@@ -2,6 +2,7 @@ import { connection } from '../config/db';
 import { MysqlError } from 'mysql';
 import { Request, Response } from 'express';
 
+
 export const FaqQuestion = async (req: Request, res: Response): Promise<void> => {
 
     const query = `SELECT question FROM chatFaq;`;
@@ -17,14 +18,35 @@ export const FaqQuestion = async (req: Request, res: Response): Promise<void> =>
 };
 
 export const getFaqAnswer = async (question: string, socket: any): Promise<void> => {
-    const query = `SELECT answer FROM chatFaq WHERE question = ?;`;
+    // 질문에 대한 답변과 이미지를 함께 조회하는 쿼리
+    const query = `
+        SELECT answer, image_1, image_2 
+        FROM chatFaq 
+        WHERE question = ?;
+    `;
 
     connection.query(query, [question], (err: MysqlError | null, result: any) => {
+        if (err) {
+            console.error('에러 발생:', err);
+            socket.emit('error', { error: 'An error occurred while retrieving the answer.' });
+            return;
+        }
+
         if (result.length > 0) {
-            console.log('완료')
-            socket.emit('faq-answer', { answer: result[0].answer });
+            const response = {
+                answer: result[0].answer,
+                images: [] as string[]
+            };
+        
+            if (result[0].image_1) {
+                response.images.push(result[0].image_1);
+            }
+            if (result[0].image_2) {
+                response.images.push(result[0].image_2);
+            }
+
+            socket.emit('faq-answer', response);
         } else {
-            console.log('어?')
             socket.emit('error', { error: 'No answer found for the given question.' });
         }
     });
