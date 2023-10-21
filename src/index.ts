@@ -19,7 +19,7 @@ app.use(cors());  // Apply the CORS middleware
 const httpServer = http.createServer(app);  // Pass the Express app to the HTTP server
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", 
+    origin: "*", // 허용할 origin을 여기에 설정
     methods: ["GET", "POST"]
   }
 });
@@ -35,6 +35,8 @@ app.use('/faq', faqRoutes);
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
+
+  socket.send('안녕하세요! MALL BA 챗봇입니다. 제품에 관한 정보와 도움을 제공하기 위해 있습니다. 무엇을 도와드릴까요?');
 
   socket.on('message', async (msg) => {
     console.log('Received:', msg);

@@ -26,7 +26,7 @@ export const message = async (question: string, socket: any): Promise<void> => {
     });
 
     const prompt =
-      PromptTemplate.fromTemplate(`Based on the table schema below, write a SQL query that would answer the user's question:
+      PromptTemplate.fromTemplate(`creates an SQL query that answers the user's questions based on the table schema below:
       {schema}
 
       Question: {question}
@@ -43,10 +43,16 @@ export const message = async (question: string, socket: any): Promise<void> => {
       model.bind({ stop: ["\nSQLResult:"] }),
       new StringOutputParser(),
     ]);
+
+    const result = await sqlQueryGeneratorChain.invoke({
+      question: question,
+    });
+    
+    console.log(result);
     
     const finalResponsePrompt =
     PromptTemplate.fromTemplate(`
-      It's a shopping mall "Mall, Bar" chatbot that everyone uses.
+      It's a shopping mall "MALL BA" chatbot that everyone uses.
       Avoid questions that are not related to shopping mall chatbots.
       We are here to provide information and assistance regarding our products.
       Based on the table schema below, question, sql query, and sql response, write a natural language response:
@@ -54,13 +60,12 @@ export const message = async (question: string, socket: any): Promise<void> => {
       Question: {question}
       SQL Query: {query}
       SQL Response: {response}
-      {text} is already a result derived from a user question. Write one sentence according to the user question.
       It avoids professional languages and makes it easy for all users in Korea to read them.
       If you don't know the answer, just say you don't know it, and don't try to make up the answer.
       Respectfully answer that if the question is not context-related, it is adjusted to answer only context-related questions.
-      We aim to provide clear and concise information to all customers in Korean.`);
+      We aim to provide clear and concise information in Korean to all customers in 1 sentence.`);
   
-  
+
       const fullChain = RunnableSequence.from([
         {
             question: (input) => input.question,
@@ -71,7 +76,6 @@ export const message = async (question: string, socket: any): Promise<void> => {
             question: (input) => input.question,
             query: (input) => input.query,
             response: (input) => db.run(input.query),
-            text: (input) => input.response, // 이 부분을 추가하거나 수정하여 `text` 변수에 값을 할당
         },
         finalResponsePrompt,
         model,
