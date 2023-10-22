@@ -61,6 +61,7 @@ export const message = async (question: string, socket: any): Promise<void> => {
       SQL Query: {query}
       SQL Response: {response}
       It avoids professional languages and makes it easy for all users in Korea to read them.
+      It does not mention anything related to the link.
       If you don't know the answer, just say you don't know it, and don't try to make up the answer.
       Respectfully answer that if the question is not context-related, it is adjusted to answer only context-related questions.
       We aim to provide clear and concise information in Korean to all customers in 1 sentence.`);
