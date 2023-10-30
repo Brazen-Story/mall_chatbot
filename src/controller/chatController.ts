@@ -49,38 +49,42 @@ export const message = async (question: string, socket: any): Promise<void> => {
     });
     
     console.log(result);
-    
-    const finalResponsePrompt =
-    PromptTemplate.fromTemplate(`
-      It's a shopping mall "MALL BA" chatbot that everyone uses.
-      Avoid questions that are not related to shopping mall chatbots.
-      We are here to provide information and assistance regarding our products.
-      Based on the table schema below, question, sql query, and sql response, write a natural language response:
-      {schema}
-      Question: {question}
-      SQL Query: {query}
-      SQL Response: {response}
-      It avoids professional languages and makes it easy for all users in Korea to read them.
-      It does not mention anything related to the link.
-      If you don't know the answer, just say you don't know it, and don't try to make up the answer.
-      Respectfully answer that if the question is not context-related, it is adjusted to answer only context-related questions.
-      We aim to provide clear and concise information in Korean to all customers in 1 sentence.`);
-  
+    const finalResponsePrompt = PromptTemplate.fromTemplate(`
+    "MALL BA" shopping mall chatbot. Here, we only provide information and assistance related to shopping mall chatbots.
+    Write a natural language response based on the table schema below, questions, SQL queries, and SQL responses.
+    Schema: """
+    {schema} 
+    """
+    Question: """ 
+    {question} 
+    """
+    SQL query: """
+    {query} 
+    """
+    SQL Response: """ 
+    {response} 
+    """
+    Avoid jargon and make it easy for all Korean users to read.
+    It does not mention anything related to the link.
+    If you don't know the answer, answer that you don't know without making up the answer.
+    Respectfully inform that if the question is context-related, you will only answer context-related questions.
+    The goal is to provide clear and concise information in Korean to all customers in 1 sentence.
+    `);
 
-      const fullChain = RunnableSequence.from([
-        {
-            question: (input) => input.question,
-            query: sqlQueryGeneratorChain,
-        },
-        {
-            schema: async () => db.getTableInfo(),
-            question: (input) => input.question,
-            query: (input) => input.query,
-            response: (input) => db.run(input.query),
-        },
-        finalResponsePrompt,
-        model,
-    ]);
+    const fullChain = RunnableSequence.from([
+      {
+          question: (input) => input.question,
+          query: sqlQueryGeneratorChain,
+      },
+      {
+          schema: async () => db.getTableInfo(),
+          question: (input) => input.question,
+          query: (input) => input.query,
+          response: (input) => db.run(input.query),
+      },
+      finalResponsePrompt,
+      model,
+  ]);
     
   
   const finalResponse = await fullChain.invoke({
