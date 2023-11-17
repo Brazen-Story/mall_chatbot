@@ -9,6 +9,7 @@ import { connection } from './config/db';
 import { faqRoutes } from './routes/FAQ_Routes';
 import { message as generateResponse } from './controller/chatController';  
 import { getFaqAnswer } from './controller/FAQ_Controller'; 
+import { swaggerUi, specs } from './utill/swagger';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ connection.query(faq, function (error: Error, userResults: string) {
   console.log('good User');
 });
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/faq', faqRoutes);
 
 io.on('connection', (socket) => {
