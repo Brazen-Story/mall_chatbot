@@ -1,13 +1,13 @@
 import { connection } from '../config/db';
 import { MysqlError } from 'mysql';
 import { Request, Response } from 'express';
-
+import { Socket } from 'socket.io'; 
 
 export const FaqQuestion = async (req: Request, res: Response): Promise<void> => {
 
     const query = `SELECT question FROM chatFaq;`;
 
-    connection.query(query, (err: Error, result: any) => {
+    connection.query(query, (err: Error, result: FaqQuestion[]) => {
         if (err) {
             console.error("Database error:", err);
             res.status(500).send("Internal Server Error");
@@ -17,7 +17,7 @@ export const FaqQuestion = async (req: Request, res: Response): Promise<void> =>
     });
 };
 
-export const getFaqAnswer = async (question: string, socket: any): Promise<void> => {
+export const getFaqAnswer = async (question: string, socket: Socket): Promise<void> => {
     // 질문에 대한 답변과 이미지를 함께 조회하는 쿼리
     const query = `
         SELECT answer, image_1, image_2 
@@ -25,7 +25,7 @@ export const getFaqAnswer = async (question: string, socket: any): Promise<void>
         WHERE question = ?;
     `;
 
-    connection.query(query, [question], (err: MysqlError | null, result: any) => {
+    connection.query(query, [question], (err: MysqlError | null, result: FaqAnswer[]) => {
         if (err) {
             console.error('에러 발생:', err);
             socket.emit('error', { error: 'An error occurred while retrieving the answer.' });
@@ -44,6 +44,8 @@ export const getFaqAnswer = async (question: string, socket: any): Promise<void>
             if (result[0].image_2) {
                 response.images.push(result[0].image_2);
             }
+
+            console.log(result)
 
             socket.emit('faq-answer', response);
         } else {

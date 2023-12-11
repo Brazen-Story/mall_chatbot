@@ -27,9 +27,9 @@ const io = new Server(httpServer, {
 
 const faq = 'SELECT * FROM chatFaq;';
 
-connection.query(faq, function (error: Error, userResults: string) {
+connection.query(faq, function (error: Error, faqResults: FaqResult[]) {
   if (error) throw error;
-  console.log('good User');
+  console.log(faqResults);
 });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 httpServer.listen(PORT, () => {  // Make the HTTP server listen on the port
   console.log(`Server running on port ${PORT}`);
 });

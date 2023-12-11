@@ -5,8 +5,9 @@ import { PromptTemplate } from "langchain/prompts";
 import { StringOutputParser } from "langchain/schema/output_parser";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OPENAI_CONFIG } from "../config/openai";
+import { Socket } from 'socket.io';
 
-export const message = async (question: string, socket: any): Promise<void> => {
+export const message = async (question: string, socket: Socket): Promise<void> => {
   try {
 
     const datasource = new DataSource({

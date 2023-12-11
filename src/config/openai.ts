@@ -1,4 +1,4 @@
 export const OPENAI_CONFIG = {
-    modelName: "gpt-3.5",
+    modelName: "gpt-4.0",
     temperature: 0
 };
